@@ -138,8 +138,8 @@ public class DangKyPhieuMuonActivity extends AppCompatActivity implements View.O
                 if (phieuMuonDao.insertPhieuMuon(user.getPhieuMuon()) > 0) {
                     user.getTheThuVien().setHasPhieuMuon(true);
                     nguoiDungDao.updatePhieuMuon(user);
-                    pref.edit().putString(Constant.KEY_USER, new Gson().toJson(user)).commit();
-                    theThuVienDao.updateTheThuVien(user);
+                    nguoiDungDao.updateTheThuVien(user);
+                    pref.edit().putString(Constant.KEY_USER, new Gson().toJson(user)).apply();
                     Toast.makeText(getApplicationContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(this,HomeActivity.class));
                 } else {

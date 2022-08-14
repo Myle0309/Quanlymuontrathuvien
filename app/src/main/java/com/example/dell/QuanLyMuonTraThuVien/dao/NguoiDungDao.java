@@ -65,6 +65,9 @@ public class NguoiDungDao {
             ee.setPassword(c.getString(1));
             ee.setPhone(c.getString(2));
             ee.setHoTen(c.getString(3));
+            ee.setHasLibraryCard(c.getString(4).equals("1"));
+            ee.setTheThuVien(new Gson().fromJson(c.getString(5),TheThuVien.class));
+            ee.setPhieuMuon(new Gson().fromJson(c.getString(6),PhieuMuon.class));
             dsNguoiDung.add(ee);
             Log.d("//======", ee.toString());
             c.moveToNext();

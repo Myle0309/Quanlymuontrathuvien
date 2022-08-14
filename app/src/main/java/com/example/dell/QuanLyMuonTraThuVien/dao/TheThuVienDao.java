@@ -36,24 +36,13 @@ public class TheThuVienDao {
         values.put("NienKhoa", theThuVien.getNienKhoa());
         values.put("SoDienThoai", theThuVien.getSoDienThoai());
         values.put("NgayDangKy", sdf.format(theThuVien.getNgayDangKy()));
-        values.put("isHasPhieuMuon", false);
+        values.put("isHasPhieuMuon", theThuVien.getHasPhieuMuon());
         try {
             if (db.insert(TABLE_NAME, null, values) == -1) {
                 return -1;
             }
         } catch (Exception ex) {
             Log.e(TAG, ex.toString());
-        }
-        return 1;
-    }
-
-    public int updateTheThuVien(NguoiDung nd) {
-        ContentValues values = new ContentValues();
-        values.put("isHasPhieuMuon", nd.getTheThuVien().getHasPhieuMuon() ? 1 : 0);
-        int result = db.update(TABLE_NAME, values, "SoDienThoai=?", new
-                String[]{nd.getPhone()});
-        if (result == 0) {
-            return -1;
         }
         return 1;
     }

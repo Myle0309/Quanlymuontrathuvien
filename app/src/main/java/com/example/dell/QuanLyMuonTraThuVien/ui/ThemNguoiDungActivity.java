@@ -1,7 +1,9 @@
 package com.example.dell.QuanLyMuonTraThuVien.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,11 +29,14 @@ public class ThemNguoiDungActivity extends AppCompatActivity {
     private Button btnlistnguoidung;
     NguoiDungDao nguoiDungDao;
 
+    private SharedPreferences pref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_them_nguoi_dung);
         setTitle("Thêm Người Dùng");
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
         initView();
 
 
