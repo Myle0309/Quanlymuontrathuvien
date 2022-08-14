@@ -26,6 +26,7 @@ public class HomeActivity extends AppCompatActivity {
     private LinearLayout trasach;
     private LinearLayout dkPhieuMuon;
     private SharedPreferences pref;
+    private LinearLayout thethuvien;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,14 +62,16 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
         dkPhieuMuon.setOnClickListener(v -> {
-            String defaultUser = new Gson().toJson(new NguoiDung());
-            NguoiDung user = new Gson().fromJson(pref.getString(Constant.KEY_USER, defaultUser), NguoiDung.class);
-            if (user.getHasLibraryCard() != null && user.getHasLibraryCard()) {
-                Intent c = new Intent(HomeActivity.this, DangKyPhieuMuonActivity.class);
-                startActivity(c);
-            } else {
-                Toast.makeText(HomeActivity.this, "Bạn chưa có thẻ thư viện vui lòng đăng ký trước", Toast.LENGTH_SHORT).show();
-            }
+//            String defaultUser = new Gson().toJson(new NguoiDung());
+//            NguoiDung user = new Gson().fromJson(pref.getString(Constant.KEY_USER, defaultUser), NguoiDung.class);
+//            if (user.getHasLibraryCard() != null && user.getHasLibraryCard()) {
+//                Intent c = new Intent(HomeActivity.this, DangKyPhieuMuonActivity.class);
+//                startActivity(c);
+//            } else {
+//                Toast.makeText(HomeActivity.this, "Bạn chưa có thẻ thư viện vui lòng đăng ký trước", Toast.LENGTH_SHORT).show();
+//            }
+            Intent c = new Intent(HomeActivity.this, DangKyPhieuMuonActivity.class);
+            startActivity(c);
 
         });
 
