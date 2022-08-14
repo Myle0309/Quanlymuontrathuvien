@@ -52,20 +52,14 @@ public class LoginActivity extends AppCompatActivity {
             nguoiDungDao.insertNguoiDung(user3);
         }
         checkLogin();
-
-            edtUsername.setText("admin");
-            edtPassword.setText("1234567");
-
-
-        }
-
+        edtUsername.setText("admin");
+        edtPassword.setText("1234567");
+    }
 
     public void checkLogin() {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 String userName = edtUsername.getText().toString().trim();
                 String password = edtPassword.getText().toString().trim();
                 if (password.length() < 6 || userName.isEmpty() || password.isEmpty()) {
@@ -78,17 +72,15 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 } else {
-
-
                     NguoiDung user = nguoiDungDao.getUser(userName);
                     if (user != null && user.getUserName() != null) {
                         if (password.matches(user.getPassword())) {
                             Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                             startActivity(intent);
-                            finish();
                             String userInString = new Gson().toJson(user);
                             pref.edit().putString(Constant.KEY_USER, userInString).commit();
                             Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                            finish();
                         } else {
 
                             Toast.makeText(LoginActivity.this, "Tài khoản hoặc mật khẩu chưa chính xác", Toast.LENGTH_SHORT).show();
@@ -102,7 +94,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
-
 
 
     public void rememberUser(String u, String p, boolean status) {

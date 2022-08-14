@@ -1,43 +1,31 @@
 package com.example.dell.QuanLyMuonTraThuVien.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class TheThuVien  implements Serializable {
+public class PhieuMuon {
     String HoTen;
     String Truong;
     String Lop;
-    String NienKhoa;
+    String DiaChi;
     String SoDienThoai;
     Date NgayDangKy;
-    Boolean isHasPhieuMuon;
 
-    public Boolean getHasPhieuMuon() {
-        return isHasPhieuMuon;
-    }
-
-    public void setHasPhieuMuon(Boolean hasPhieuMuon) {
-        isHasPhieuMuon = hasPhieuMuon;
-    }
-
-    public TheThuVien() {
+    public PhieuMuon(){
         HoTen = "";
         Truong = "";
         Lop = "";
-        NienKhoa = "";
+        DiaChi = "";
         SoDienThoai = "";
-        isHasPhieuMuon = false;
         NgayDangKy = new Date();
     }
 
-    public TheThuVien(String hoTen, String truong, String lop, String nienKhoa, String soDienThoai, Date ngayDangKy,Boolean isHasPhieuMuon) {
+    public PhieuMuon(String hoTen, String truong, String lop, String diaChi, String soDienThoai, Date ngayDangKy) {
         HoTen = hoTen;
         Truong = truong;
         Lop = lop;
-        NienKhoa = nienKhoa;
+        DiaChi = diaChi;
         SoDienThoai = soDienThoai;
         NgayDangKy = ngayDangKy;
-        this.isHasPhieuMuon = isHasPhieuMuon;
     }
 
     public String getHoTen() {
@@ -64,12 +52,12 @@ public class TheThuVien  implements Serializable {
         Lop = lop;
     }
 
-    public String getNienKhoa() {
-        return NienKhoa;
+    public String getDiaChi() {
+        return DiaChi;
     }
 
-    public void setNienKhoa(String nienKhoa) {
-        NienKhoa = nienKhoa;
+    public void setDiaChi(String diaChi) {
+        DiaChi = diaChi;
     }
 
     public String getSoDienThoai() {

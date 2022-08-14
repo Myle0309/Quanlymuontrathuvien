@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dell.QuanLyMuonTraThuVien.Constant;
 import com.example.dell.QuanLyMuonTraThuVien.R;
+import com.example.dell.QuanLyMuonTraThuVien.dao.NguoiDungDao;
 import com.example.dell.QuanLyMuonTraThuVien.model.NguoiDung;
 import com.google.gson.Gson;
 
@@ -28,12 +29,19 @@ public class HomeActivity extends AppCompatActivity {
     private SharedPreferences pref;
     private LinearLayout thethuvien;
 
+    NguoiDungDao nguoiDungDao;
+    String defaultUser;
+    NguoiDung user;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         initView();
+        nguoiDungDao = new NguoiDungDao(getApplicationContext());
         pref = PreferenceManager.getDefaultSharedPreferences(this);
+        getUser();
         docgia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,33 +59,34 @@ public class HomeActivity extends AppCompatActivity {
         muonsach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String defaultUser = new Gson().toJson(new NguoiDung());
-                NguoiDung user = new Gson().fromJson(pref.getString(Constant.KEY_USER, defaultUser), NguoiDung.class);
-                if (user.getHasLibraryCard() != null && user.getHasLibraryCard()) {
+                if (user.getTheThuVien().getHasPhieuMuon()) {
                     Intent c = new Intent(HomeActivity.this, MuonSachActivity.class);
                     startActivity(c);
                 } else {
-                    Toast.makeText(HomeActivity.this, "Bạn chưa có thẻ thư viện vui lòng đăng ký trước", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeActivity.this, "Bạn chưa phiếu mượn vui lòng đăng ký trước", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         dkPhieuMuon.setOnClickListener(v -> {
-//            String defaultUser = new Gson().toJson(new NguoiDung());
-//            NguoiDung user = new Gson().fromJson(pref.getString(Constant.KEY_USER, defaultUser), NguoiDung.class);
-//            if (user.getHasLibraryCard() != null && user.getHasLibraryCard()) {
-//                Intent c = new Intent(HomeActivity.this, DangKyPhieuMuonActivity.class);
-//                startActivity(c);
-//            } else {
-//                Toast.makeText(HomeActivity.this, "Bạn chưa có thẻ thư viện vui lòng đăng ký trước", Toast.LENGTH_SHORT).show();
-//            }
-            Intent c = new Intent(HomeActivity.this, DangKyPhieuMuonActivity.class);
-            startActivity(c);
-
+            if (user.getHasLibraryCard() != null && user.getHasLibraryCard()) {
+                if (!user.getTheThuVien().getHasPhieuMuon()) {
+                    Intent c = new Intent(HomeActivity.this, DangKyPhieuMuonActivity.class);
+                    startActivity(c);
+                } else {
+                    Toast.makeText(HomeActivity.this, "Bạn đã có thẻ thư viện và phiếu mượn rồi.", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(HomeActivity.this, "Bạn không có thẻ thư viện vui lòng đăng ký trước.", Toast.LENGTH_SHORT).show();
+            }
         });
 
         dkTheThuVien.setOnClickListener(v -> {
-            Intent c = new Intent(HomeActivity.this, DangKyTheThuVienActivity.class);
-            startActivity(c);
+            if (user.getHasLibraryCard() != null && !user.getHasLibraryCard()) {
+                Intent c = new Intent(HomeActivity.this, DangKyTheThuVienActivity.class);
+                startActivity(c);
+            } else {
+                Toast.makeText(HomeActivity.this, "Bạn đã có thẻ thư viện rồi.", Toast.LENGTH_SHORT).show();
+            }
         });
         thoat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +104,12 @@ public class HomeActivity extends AppCompatActivity {
                 builder.show();
             }
         });
+    }
+
+    private void getUser() {
+        defaultUser = new Gson().toJson(new NguoiDung());
+        String userID = new Gson().fromJson(pref.getString(Constant.KEY_USER, defaultUser), NguoiDung.class).getUserName();
+        user = nguoiDungDao.getUser(userID);
     }
 
     private void initView() {

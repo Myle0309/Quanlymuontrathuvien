@@ -22,34 +22,22 @@
             android:text="LẬP PHIẾU MƯỢN SÁCH"
             android:textColor="@color/design_default_color_error"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/edtMaPM"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="55dp"
-            android:text="Mã phiếu mượn:"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
-            android:layout_marginTop="60dp"
             android:layout_marginBottom="58dp"
             android:text="Họ tên:"
+            android:layout_marginTop="40dp"
             android:textColor="@color/colorPrimary"
-            app:layout_constraintBottom_toTopOf="@+id/edtTruongPM"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <TextView
             android:id="@+id/textView4"
@@ -66,12 +54,12 @@
             android:id="@+id/LopPM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="294dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="56dp"
             android:text="Lớp"
             android:textColor="@color/colorPrimary"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <TextView
             android:id="@+id/Ngaylapphieu"
@@ -88,22 +76,13 @@
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="38dp"
             android:text="Số điện thoại"
             android:textColor="@color/colorPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtDiaChi" />
 
-        <EditText
-            android:id="@+id/edtMaPM"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="@+id/textView2"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="@+id/textView2" />
 
         <EditText
             android:id="@+id/edtTruongPM"
@@ -112,6 +91,7 @@
             android:layout_marginTop="35dp"
             android:ems="10"
             android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/edtHotenPM"
             app:layout_constraintStart_toStartOf="@+id/edtHotenPM"
             app:layout_constraintTop_toBottomOf="@+id/edtHotenPM" />
 
@@ -122,7 +102,8 @@
             android:layout_marginTop="116dp"
             android:ems="10"
             android:inputType="textPersonName"
-            app:layout_constraintStart_toStartOf="@+id/edtHotenPM"
+            app:layout_constraintEnd_toEndOf="@+id/edtTruongPM"
+            app:layout_constraintStart_toStartOf="@+id/edtTruongPM"
             app:layout_constraintTop_toBottomOf="@+id/edtHotenPM" />
 
         <EditText
@@ -132,18 +113,21 @@
             android:layout_marginTop="196dp"
             android:ems="10"
             android:inputType="textPersonName"
-            app:layout_constraintStart_toStartOf="@+id/edtHotenPM"
+            app:layout_constraintEnd_toEndOf="@+id/edtLop"
+            app:layout_constraintStart_toStartOf="@+id/edtLop"
             app:layout_constraintTop_toBottomOf="@+id/edtHotenPM" />
 
         <EditText
             android:id="@+id/edtHotenPM"
             android:layout_width="0dp"
             android:layout_height="42dp"
-            android:layout_marginTop="118dp"
             android:ems="10"
+            android:layout_marginStart="20dp"
             android:inputType="textPersonName"
-            app:layout_constraintStart_toStartOf="@+id/edtMaPM"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
+            app:layout_constraintBottom_toBottomOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView3"
+            app:layout_constraintTop_toTopOf="@+id/textView3" />
 
         <Button
             android:id="@+id/DkPM"
@@ -186,7 +170,7 @@
             android:id="@+id/Diachi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="11dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="2dp"
             android:text="Địa chỉ:"
             android:textColor="@color/colorPrimary"

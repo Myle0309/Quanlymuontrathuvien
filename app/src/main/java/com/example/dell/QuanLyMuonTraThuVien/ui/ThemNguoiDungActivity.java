@@ -72,18 +72,17 @@ public class ThemNguoiDungActivity extends AppCompatActivity {
         NguoiDung user = new NguoiDung(edUserName.getText().toString(), edtPassword.getText().toString(),
                 edtphone.getText().toString(), edfullname.getText().toString());
         try {
-            if (validateForm()>0){
-                if (nguoiDungDao.insertNguoiDung(user)>0){
+            if (validateForm() > 0) {
+                if (nguoiDungDao.insertNguoiDung(user) > 0) {
                     Toast.makeText(getApplicationContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
                     Intent b = new Intent(ThemNguoiDungActivity.this, NguoidungActivity.class);
                     startActivity(b);
-
-                }else {
+                } else {
                     Toast.makeText(getApplicationContext(), "Thêm thất bại", Toast.LENGTH_SHORT).show();
                 }
             }
-        }catch (Exception e){
-            Log.e("Error",e.toString());
+        } catch (Exception e) {
+            Log.e("Error", e.toString());
         }
     }
 
@@ -96,14 +95,14 @@ public class ThemNguoiDungActivity extends AppCompatActivity {
             check = -1;
         } else {
             String pass = edtPassword.getText().toString();
-            String rePass= edtPassword2.getText().toString();
-            if (pass.length()<6){
+            String rePass = edtPassword2.getText().toString();
+            if (pass.length() < 6) {
                 edtPassword.setError(getString(R.string.notify_length_pass));
                 check = -1;
             }
-            if (!pass.equals(rePass)){
-               edtPassword2.setError("Mật khẩu phải trùng nhau");
-                check =-1;
+            if (!pass.equals(rePass)) {
+                edtPassword2.setError("Mật khẩu phải trùng nhau");
+                check = -1;
             }
         }
         return check;

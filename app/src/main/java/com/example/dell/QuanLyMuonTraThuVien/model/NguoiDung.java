@@ -7,6 +7,7 @@ public class NguoiDung {
     String hoTen;
     Boolean isHasLibraryCard;
     TheThuVien theThuVien;
+    PhieuMuon phieuMuon;
 
     public NguoiDung() {
     }
@@ -16,6 +17,9 @@ public class NguoiDung {
         this.password = password;
         this.phone = phone;
         this.hoTen = hoTen;
+        this.isHasLibraryCard = false;
+        this.theThuVien = new TheThuVien();
+        this.phieuMuon = new PhieuMuon();
     }
 
     public Boolean getHasLibraryCard() {
@@ -38,6 +42,19 @@ public class NguoiDung {
         this(userName, password, phone, hoTen);
         this.isHasLibraryCard = isHasLibraryCard;
         this.theThuVien = theThuVien;
+    }
+
+    public PhieuMuon getPhieuMuon() {
+        return phieuMuon;
+    }
+
+    public void setPhieuMuon(PhieuMuon phieuMuon) {
+        this.phieuMuon = phieuMuon;
+    }
+
+    public NguoiDung(String userName, String password, String phone, String hoTen, Boolean isHasLibraryCard, TheThuVien theThuVien, PhieuMuon phieuMuon) {
+        this(userName, password, phone, hoTen,isHasLibraryCard,theThuVien);
+        this.phieuMuon = phieuMuon;
     }
 
     public String getUserName() {
