@@ -15,12 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dell.QuanLyMuonTraThuVien.R;
 import com.example.dell.QuanLyMuonTraThuVien.dao.SachDao;
-import com.example.dell.QuanLyMuonTraThuVien.dao.TheLoaiDao;
 import com.example.dell.QuanLyMuonTraThuVien.model.Sach;
-import com.example.dell.QuanLyMuonTraThuVien.model.Theloai;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ThemSachActivity extends AppCompatActivity {
     SachDao sachDAO;

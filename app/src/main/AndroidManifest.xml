@@ -47,10 +47,6 @@
         <activity
             android:name=".ui.ThemMuonSachActivity"
             android:parentActivityName=".ui.MuonSachActivity" />
-        <activity
-            android:name=".ui.ChiTietNguoiDungActivity"
-            android:parentActivityName=".ui.NguoidungActivity" />
-        <activity android:name=".ui.ChiTietSachActivity" />
 
         <activity android:name=".ui.TraSachActivity"
             android:parentActivityName=".ui.HomeActivity"/>
