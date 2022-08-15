@@ -1,6 +1,8 @@
 package com.example.dell.QuanLyMuonTraThuVien.model;
 
-public class NguoiDung {
+import java.io.Serializable;
+
+public class NguoiDung  implements Serializable {
     String userName;
     String password;
     String phone;

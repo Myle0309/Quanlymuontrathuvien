@@ -16,6 +16,7 @@ import com.example.dell.QuanLyMuonTraThuVien.R;
 import com.example.dell.QuanLyMuonTraThuVien.dao.NguoiDungDao;
 import com.example.dell.QuanLyMuonTraThuVien.dao.SachDao;
 import com.example.dell.QuanLyMuonTraThuVien.model.NguoiDung;
+import com.example.dell.QuanLyMuonTraThuVien.model.TheThuVien;
 import com.google.gson.Gson;
 
 public class HomeActivity extends AppCompatActivity {
@@ -43,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         initView();
         nguoiDungDao = new NguoiDungDao(getApplicationContext());
-        sachDao= new SachDao(getApplicationContext());
+        sachDao = new SachDao(getApplicationContext());
         pref = PreferenceManager.getDefaultSharedPreferences(this);
         getUser();
         docgia.setOnClickListener(new View.OnClickListener() {
@@ -94,11 +95,21 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         trasach.setOnClickListener(v -> {
-            if(sachDao.getAllSach().size() > 0){
+            if (sachDao.getAllSach().size() > 0) {
                 Intent c = new Intent(HomeActivity.this, TraSachActivity.class);
                 startActivity(c);
-            }else{
+            } else {
                 Toast.makeText(HomeActivity.this, "Bạn ko có sách", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        thethuvien.setOnClickListener(v -> {
+            if (user.getHasLibraryCard() != null && user.getHasLibraryCard()) {
+                Intent c = new Intent(HomeActivity.this, ViewTheThuVienActivity.class);
+                c.putExtra("USER_NAME",user.getUserName());
+                startActivity(c);
+            } else {
+                Toast.makeText(HomeActivity.this, "Bạn chưa có thẻ thư viện.", Toast.LENGTH_SHORT).show();
             }
         });
         thoat.setOnClickListener(new View.OnClickListener() {
@@ -133,5 +144,6 @@ public class HomeActivity extends AppCompatActivity {
         dsSachDaMuon = (LinearLayout) findViewById(R.id.dsSachDaMuon);
         muonsach = (LinearLayout) findViewById(R.id.Muonsach);
         dkPhieuMuon = findViewById(R.id.btnDkPhieu);
+        thethuvien = findViewById(R.id.btnthethuvien);
     }
 }

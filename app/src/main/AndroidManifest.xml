@@ -50,6 +50,9 @@
 
         <activity android:name=".ui.TraSachActivity"
             android:parentActivityName=".ui.HomeActivity"/>
+
+        <activity android:name=".ui.ViewTheThuVienActivity"
+            android:parentActivityName=".ui.HomeActivity"/>
     </application>
 
 </manifest>
