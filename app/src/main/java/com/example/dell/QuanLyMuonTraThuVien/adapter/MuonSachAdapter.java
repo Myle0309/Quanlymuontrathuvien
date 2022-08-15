@@ -13,6 +13,7 @@ import com.example.dell.QuanLyMuonTraThuVien.R;
 import com.example.dell.QuanLyMuonTraThuVien.dao.MuonSachDao;
 import com.example.dell.QuanLyMuonTraThuVien.model.MuonSach;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class MuonSachAdapter extends BaseAdapter {
@@ -70,7 +71,7 @@ public class MuonSachAdapter extends BaseAdapter {
         MuonSach entry =(MuonSach)muonSachList.get(position);
         holder.img.setImageResource(R.drawable.cateicon);
         holder.tvmahoadon.setText(entry.getMaMuonSach());
-        holder.tvngayhoadon.setText(entry.getNgayMuon());
+        holder.tvngayhoadon.setText(new SimpleDateFormat("dd-MM-yyyy").format(entry.getNgayMuon()));
         return convertView;
     }
     @Override

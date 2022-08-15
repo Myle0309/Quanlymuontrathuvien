@@ -2,7 +2,6 @@ package com.example.dell.QuanLyMuonTraThuVien.model;
 
 public class Sach {
     private String maSach;
-    private String maTheLoai;
     private String tenSach;
     private String tacGia;
     private String NXB;
@@ -11,9 +10,8 @@ public class Sach {
 
     public Sach(){}
 
-    public Sach(String maSach, String maTheLoai, String tenSach, String tacGia, String NXB, double giaBan, int soLuong) {
+    public Sach(String maSach, String tenSach, String tacGia, String NXB, double giaBan, int soLuong) {
         this.maSach = maSach;
-        this.maTheLoai = maTheLoai;
         this.tenSach = tenSach;
         this.tacGia = tacGia;
         this.NXB = NXB;
@@ -29,13 +27,6 @@ public class Sach {
         this.maSach = maSach;
     }
 
-    public String getMaTheLoai() {
-        return maTheLoai;
-    }
-
-    public void setMaTheLoai(String maTheLoai) {
-        this.maTheLoai = maTheLoai;
-    }
 
     public String getTenSach() {
         return tenSach;
@@ -75,18 +66,5 @@ public class Sach {
 
     public void setSoLuong(int soLuong) {
         this.soLuong = soLuong;
-    }
-
-    @Override
-    public String toString() {
-        return "Sach {"+
-                "maSach ='"+maSach+ '\''+
-                ",maTheLoai ='"+maTheLoai+ '\''+
-                ",tenSach ='"+tenSach+ '\''+
-                ",tacGia ='"+tacGia+ '\''+
-                ",NXB ='"+NXB+ '\''+
-                ",giaBan ='"+giaBan+ '\''+
-                ",soLuong ='"+soLuong+ '\''+
-                '}';
     }
 }

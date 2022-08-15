@@ -17,7 +17,7 @@ import com.example.dell.QuanLyMuonTraThuVien.model.Sach;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SachActivity extends AppCompatActivity {
+public class DanhSachSachActivity extends AppCompatActivity {
     public  static  List<Sach> dsSach = new ArrayList<>();
     ListView lvBooks;
     SachAdapter adapter= null;
@@ -26,32 +26,15 @@ public class SachActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sach);
+        setContentView(R.layout.activity_ds_sach_da_muon);
             ActionBar actionBar = getSupportActionBar();
             actionBar.setDisplayHomeAsUpEnabled(true);
     setTitle("Quản Lý Sách");
     lvBooks=(ListView)findViewById(R.id.customlvsach);
-    sachDao= new SachDao(SachActivity.this);
+    sachDao= new SachDao(DanhSachSachActivity.this);
     dsSach = sachDao.getAllSach();
-    adapter = new SachAdapter(dsSach,this);
+    adapter = new SachAdapter(dsSach,this,false);
     lvBooks.setAdapter(adapter);
     lvBooks.setTextFilterEnabled(true);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menusach, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.itemaddsach:
-                Intent a = new Intent(SachActivity.this,ThemSachActivity.class);
-                startActivity(a);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

@@ -61,9 +61,9 @@ public class ChiTietMuonSachDao {
         try {
             while (c.isAfterLast()==false){
                 ChiTietMuonSach ee= new ChiTietMuonSach();
-                ee.setHoaDon(new MuonSach(c.getString(0),sdf.parse(c.getString(1))));
-                ee.setSach(new Sach(c.getString(2),c.getString(3),c.getString(4),c.getString(5),
-                        c.getString(6),c.getInt(7),c.getInt(8)));
+//                ee.setHoaDon(new MuonSach(c.getString(0),sdf.parse(c.getString(1))));
+//                ee.setSach(new Sach(c.getString(2),c.getString(3),c.getString(4),c.getString(5),
+//                        c.getString(6),c.getInt(7),c.getInt(8)));
                 ee.setSoLuongMuon(c.getInt(9));
                 dsChiTietMuonSach.add(ee);
                 Log.d("//======", ee.toString());
@@ -90,8 +90,8 @@ public class ChiTietMuonSachDao {
             while (c.isAfterLast()==false){
                 ChiTietMuonSach ee= new ChiTietMuonSach();
                 ee.setHoaDon(new MuonSach(c.getString(0),sdf.parse(c.getString(1))));
-                ee.setSach(new Sach(c.getString(2),c.getString(3),c.getString(4),c.getString(5),
-                        c.getString(6),c.getInt(7),c.getInt(8)));
+//                ee.setSach(new Sach(c.getString(2),c.getString(3),c.getString(4),c.getString(5),
+//                        c.getString(6),c.getInt(7),c.getInt(8)));
                 ee.setSoLuongMuon(c.getInt(9));
                 dsChiTietMuonSach.add(ee);
                 Log.d("//======", ee.toString());

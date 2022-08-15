@@ -52,13 +52,13 @@ public class ChiTietSachActivity extends AppCompatActivity {
     }
 
     public void UpdateSach(View view) {
-        if (sachDAO.updateSach(edMaSach.getText().toString(),maTheLoai,
+        if (sachDAO.updateSach(edMaSach.getText().toString(),
                 edTenSach.getText().toString(), edNXB.getText().toString(),
                 edTacGia.getText().toString(),String.valueOf(edGiaBia.getText().toString()),
                 String.valueOf(edSoLuong.getText().toString())) > 0) {
             Toast.makeText(getApplicationContext(), "Lưu Thành Công", Toast.LENGTH_SHORT).show();
 
-            Intent a = new Intent(ChiTietSachActivity.this, SachActivity.class);
+            Intent a = new Intent(ChiTietSachActivity.this, DanhSachSachActivity.class);
             startActivity(a);
         }
     }

@@ -20,7 +20,7 @@ public class NguoiDungDao {
     private DatabaseHelper dbHelper;
 
     public static final String TABLE_NAME = "NguoiDung";
-    public static final String SQL_NGUOI_DUNG = "CREATE TABLE NguoiDung(username " +
+    public static final String SQL_NGUOI_DUNG = "CREATE TABLE  NguoiDung(username " +
             "text primary key, password text, phone text,hoten text,isHasLibraryCard boolean,theThuVien text, phieuMuon text);";
     public static final String TAG = "NguoiDungDao";
 
@@ -176,7 +176,7 @@ public class NguoiDungDao {
 
         // Truyen vao Ten bang, array bao gom ten cot, ten cot khoa chinh, gia tri khoa chinh, cac tham so con lai la null
 
-        Cursor cursor = db.query(TABLE_NAME, new String[]{"username", "password", "phone", "hoten, isHasLibraryCard,theThuVien,phieuMuon "}, "username=?", new String[]{username}, null, null, null, null);
+        Cursor cursor = db.query(TABLE_NAME, new String[]{"username", "password", "phone", "hoten ","isHasLibraryCard","theThuVien","phieuMuon"}, "username=?", new String[]{username}, null, null, null, null);
 
         // moveToFirst : kiem tra xem cursor co chua du lieu khong, ham nay tra ve gia tri la true or false
         if (cursor != null && cursor.moveToFirst()) {

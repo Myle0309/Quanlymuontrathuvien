@@ -11,9 +11,12 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+
 import com.example.dell.QuanLyMuonTraThuVien.R;
 import com.example.dell.QuanLyMuonTraThuVien.dao.SachDao;
 import com.example.dell.QuanLyMuonTraThuVien.model.Sach;
+import com.example.dell.QuanLyMuonTraThuVien.ui.HomeActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,14 +28,17 @@ public class SachAdapter extends BaseAdapter implements Filterable {
     public Activity context;
     public LayoutInflater inflater;
     SachDao sachDao;
+    Boolean isHideButtonDelete;
 
-    public SachAdapter(List<Sach> arrSach, Activity context) {
+    public SachAdapter(List<Sach> arrSach, Activity context, Boolean isHideButtonDelete) {
         super();
         this.arrSach = arrSach;
         this.context = context;
         this.arrSortSach = arrSach;
+        this.isHideButtonDelete = isHideButtonDelete;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         sachDao = new SachDao(context);
+
     }
 
     @Override
@@ -72,14 +78,29 @@ public class SachAdapter extends BaseAdapter implements Filterable {
             holder.txtTenSach = (TextView) convertView.findViewById(R.id.tvnamesach);
             holder.txtSoLuong = (TextView) convertView.findViewById(R.id.tvsoluongsach);
             holder.txtGiaBan = (TextView) convertView.findViewById(R.id.tvBookPrice);
-
             holder.imgDelete = (ImageView) convertView.findViewById(R.id.imgdeletesach);
+            if (isHideButtonDelete) {
+                holder.imgDelete.setVisibility(View.VISIBLE);
+            } else {
+                holder.imgDelete.setVisibility(View.GONE);
+            }
+            holder.imgDelete.setEnabled(isHideButtonDelete);
             holder.imgDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    sachDao.deleteSachByID(arrSach.get(position).getMaSach());
-                    arrSach.remove(position);
-                    notifyDataSetChanged();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setMessage("Bạn có trả sách không ?");
+                    builder.setTitle("Bạn có trả sách không ?");
+                    builder.setPositiveButton("Ok", (dialogInterface, i) -> {
+                        sachDao.deleteSachByID(arrSach.get(position).getMaSach());
+                        arrSach.remove(position);
+                        notifyDataSetChanged();
+                    });
+                    builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
+                        dialogInterface.cancel();
+                    });
+                    builder.create();
+                    builder.show();
                 }
             });
             convertView.setTag(holder);

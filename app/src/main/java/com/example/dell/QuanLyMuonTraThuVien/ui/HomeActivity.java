@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.dell.QuanLyMuonTraThuVien.Constant;
 import com.example.dell.QuanLyMuonTraThuVien.R;
 import com.example.dell.QuanLyMuonTraThuVien.dao.NguoiDungDao;
+import com.example.dell.QuanLyMuonTraThuVien.dao.SachDao;
 import com.example.dell.QuanLyMuonTraThuVien.model.NguoiDung;
 import com.google.gson.Gson;
 
@@ -22,7 +23,7 @@ public class HomeActivity extends AppCompatActivity {
     private LinearLayout docgia;
     private LinearLayout thoat;
     private LinearLayout dkTheThuVien;
-    private LinearLayout sach;
+    private LinearLayout dsSachDaMuon;
     private LinearLayout muonsach;
     private LinearLayout trasach;
     private LinearLayout dkPhieuMuon;
@@ -33,6 +34,8 @@ public class HomeActivity extends AppCompatActivity {
     String defaultUser;
     NguoiDung user;
 
+    SachDao sachDao;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         initView();
         nguoiDungDao = new NguoiDungDao(getApplicationContext());
+        sachDao= new SachDao(getApplicationContext());
         pref = PreferenceManager.getDefaultSharedPreferences(this);
         getUser();
         docgia.setOnClickListener(new View.OnClickListener() {
@@ -49,10 +53,10 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        sach.setOnClickListener(new View.OnClickListener() {
+        dsSachDaMuon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent b = new Intent(HomeActivity.this, SachActivity.class);
+                Intent b = new Intent(HomeActivity.this, DanhSachSachActivity.class);
                 startActivity(b);
             }
         });
@@ -88,6 +92,15 @@ public class HomeActivity extends AppCompatActivity {
                 Toast.makeText(HomeActivity.this, "Bạn đã có thẻ thư viện rồi.", Toast.LENGTH_SHORT).show();
             }
         });
+
+        trasach.setOnClickListener(v -> {
+            if(sachDao.getAllSach().size() > 0){
+                Intent c = new Intent(HomeActivity.this, TraSachActivity.class);
+                startActivity(c);
+            }else{
+                Toast.makeText(HomeActivity.this, "Bạn ko có sách", Toast.LENGTH_SHORT).show();
+            }
+        });
         thoat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,8 +128,9 @@ public class HomeActivity extends AppCompatActivity {
     private void initView() {
         docgia = (LinearLayout) findViewById(R.id.Docgia);
         thoat = (LinearLayout) findViewById(R.id.Thoat);
-        dkTheThuVien = (LinearLayout) findViewById(R.id.theloai);
-        sach = (LinearLayout) findViewById(R.id.sach);
+        dkTheThuVien = (LinearLayout) findViewById(R.id.btnDkTheThuVien);
+        trasach = findViewById(R.id.trasach);
+        dsSachDaMuon = (LinearLayout) findViewById(R.id.dsSachDaMuon);
         muonsach = (LinearLayout) findViewById(R.id.Muonsach);
         dkPhieuMuon = findViewById(R.id.btnDkPhieu);
     }

@@ -1,5 +1,6 @@
 package com.example.dell.QuanLyMuonTraThuVien.ui;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,10 +18,13 @@ import com.example.dell.QuanLyMuonTraThuVien.R;
 import com.example.dell.QuanLyMuonTraThuVien.dao.MuonSachDao;
 import com.example.dell.QuanLyMuonTraThuVien.model.MuonSach;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class ThemMuonSachActivity extends AppCompatActivity {
-    private Button showmuonsach ;
+    private Button showmuonsach;
 
     private EditText edMaHoaDonHoaDon;
     private EditText tvChonNgay;
@@ -46,7 +50,12 @@ public class ThemMuonSachActivity extends AppCompatActivity {
         btnThemThemHoaDon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnThem_ThemMuonSach();
+                try {
+                    btnThem_ThemMuonSach();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    Toast.makeText(ThemMuonSachActivity.this, "Có lỗi xảy ra ko thể thêm sách", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         btnHuy_ThemHoaDon.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +71,7 @@ public class ThemMuonSachActivity extends AppCompatActivity {
             }
         });
     }
+
     public void showDatePicker() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -80,30 +90,33 @@ public class ThemMuonSachActivity extends AppCompatActivity {
         }, year, month, day);
         datePickerDialog.show();
     }
-    private void btnThem_ThemMuonSach() {
+
+    private void btnThem_ThemMuonSach() throws ParseException {
         muonSachDao = new MuonSachDao(ThemMuonSachActivity.this);
-        MuonSach muonSach = new MuonSach(edMaHoaDonHoaDon.getText().toString(),tvChonNgay.getText().toString());
+        @SuppressLint("SimpleDateFormat") MuonSach muonSach = new MuonSach(edMaHoaDonHoaDon.getText().toString(),
+                new SimpleDateFormat("dd-MM-yyy").parse(tvChonNgay.getText().toString()));
         try {
-            if (validateForm()>0){
-                if (muonSachDao.insertMuonSach(muonSach)>0){
+            if (validateForm() > 0) {
+                if (muonSachDao.insertMuonSach(muonSach) > 0) {
                     Toast.makeText(getApplicationContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
                     Intent b = new Intent(ThemMuonSachActivity.this, MuonSachActivity.class);
                     startActivity(b);
-                }else {
+                } else {
                     Toast.makeText(getApplicationContext(), "Thêm thất bại", Toast.LENGTH_SHORT).show();
                 }
             }
-        }catch (Exception e){
-            Log.e("Error",e.toString());
+        } catch (Exception e) {
+            Log.e("Error", e.toString());
         }
     }
+
     private int validateForm() {
         int check = 1;
         if (edMaHoaDonHoaDon.getText().length() == 0 || tvChonNgay.getText().length() == 0) {
             Toast.makeText(getApplicationContext(), "Bạn phải nhập đủ thông tin", Toast.LENGTH_SHORT).show();
             check = -1;
         }
-        if (edMaHoaDonHoaDon.getText().length()>5){
+        if (edMaHoaDonHoaDon.getText().length() > 5) {
             edMaHoaDonHoaDon.setError("Mã không quá 5 kí tự");
         }
         return check;

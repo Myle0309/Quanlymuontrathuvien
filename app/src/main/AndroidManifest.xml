@@ -36,11 +36,11 @@
             android:name=".ui.DoiMatKhauActivity"
             android:parentActivityName=".ui.NguoidungActivity" />
         <activity
-            android:name=".ui.SachActivity"
+            android:name=".ui.DanhSachSachActivity"
             android:parentActivityName=".ui.HomeActivity" />
         <activity
             android:name=".ui.ThemSachActivity"
-            android:parentActivityName=".ui.SachActivity" />
+            android:parentActivityName=".ui.DanhSachSachActivity" />
         <activity
             android:name=".ui.MuonSachActivity"
             android:parentActivityName=".ui.HomeActivity" />
@@ -51,6 +51,9 @@
             android:name=".ui.ChiTietNguoiDungActivity"
             android:parentActivityName=".ui.NguoidungActivity" />
         <activity android:name=".ui.ChiTietSachActivity" />
+
+        <activity android:name=".ui.TraSachActivity"
+            android:parentActivityName=".ui.HomeActivity"/>
     </application>
 
 </manifest>

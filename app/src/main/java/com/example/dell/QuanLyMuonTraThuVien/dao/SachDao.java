@@ -16,7 +16,7 @@ public class SachDao {
     private SQLiteDatabase db;
     private DatabaseHelper dbHelper;
     public static final String TABLE_NAME = "Sach";
-    public static final String SQL_SACH ="CREATE TABLE Sach (maSach text primary key, maTheLoai text, tensach text," +
+    public static final String SQL_SACH ="CREATE TABLE Sach (maSach text primary key, tensach text," +
             "tacGia text, NXB text, giaBia double, soLuong number);";
     public static final String TAG = "SachDAO";
     public SachDao(Context context) {
@@ -27,7 +27,6 @@ public class SachDao {
     public int inserSach(Sach s){
         ContentValues values = new ContentValues();
         values.put("maSach",s.getMaSach());
-        values.put("maTheLoai",s.getMaTheLoai());
         values.put("tensach",s.getTenSach());
         values.put("tacGia",s.getTacGia());
         values.put("NXB",s.getNXB());
@@ -58,12 +57,11 @@ public class SachDao {
         while (c.isAfterLast()==false){
             Sach s = new Sach();
             s.setMaSach(c.getString(0));
-            s.setMaTheLoai(c.getString(1));
-            s.setTenSach(c.getString(2));
-            s.setTacGia(c.getString(3));
-            s.setNXB(c.getString(4));
-            s.setGiaBan(c.getDouble(5));
-            s.setSoLuong(c.getInt(6));
+            s.setTenSach(c.getString(1));
+            s.setTacGia(c.getString(2));
+            s.setNXB(c.getString(3));
+            s.setGiaBan(c.getDouble(4));
+            s.setSoLuong(c.getInt(5));
             dsSach.add(s);
             Log.d("//=====",s.toString());
             c.moveToNext();
@@ -74,7 +72,6 @@ public class SachDao {
     public int updateSach(Sach s){
         ContentValues values = new ContentValues();
         values.put("maSach",s.getMaSach());
-        values.put("maTheLoai",s.getMaTheLoai());
         values.put("tensach",s.getTenSach());
         values.put("tacGia",s.getTacGia());
         values.put("NXB",s.getNXB());
@@ -134,12 +131,11 @@ public class SachDao {
             c.moveToFirst();
             while (c.isAfterLast()==false){
                 s.setMaSach(c.getString(0));
-                s.setMaTheLoai(c.getString(1));
-                s.setTenSach(c.getString(2));
-                s.setTacGia(c.getString(3));
-                s.setNXB(c.getString(4));
-                s.setGiaBan(c.getDouble(5));
-                s.setSoLuong(c.getInt(6));
+                s.setTenSach(c.getString(1));
+                s.setTacGia(c.getString(2));
+                s.setNXB(c.getString(3));
+                s.setGiaBan(c.getDouble(4));
+                s.setSoLuong(c.getInt(5));
                 Log.d("//=====",s.toString());
                 break;
             }
@@ -163,12 +159,11 @@ public class SachDao {
         while (c.isAfterLast()==false){
             s = new Sach();
             s.setMaSach(c.getString(0));
-            s.setMaTheLoai(c.getString(1));
-            s.setTenSach(c.getString(2));
-            s.setTacGia(c.getString(3));
-            s.setNXB(c.getString(4));
-            s.setGiaBan(c.getDouble(5));
-            s.setSoLuong(c.getInt(6));
+            s.setTenSach(c.getString(1));
+            s.setTacGia(c.getString(2));
+            s.setNXB(c.getString(3));
+            s.setGiaBan(c.getDouble(4));
+            s.setSoLuong(c.getInt(5));
             break;
         }
         c.close();
@@ -190,7 +185,6 @@ public class SachDao {
             s.setMaSach(c.getString(0));
             s.setSoLuong(c.getInt(1));
             s.setGiaBan(0);
-            s.setMaTheLoai("");
             s.setTenSach("");
             s.setTacGia("");
             s.setNXB("");
@@ -201,10 +195,9 @@ public class SachDao {
         return dsSach;
     }
 
-    public int updateSach(String masach, String matheloai, String tensach, String tacgia, String nxb, String giaban,String soluong) {
+    public int updateSach(String masach, String tensach, String tacgia, String nxb, String giaban,String soluong) {
         ContentValues values = new ContentValues();
         values.put("maSach",masach);
-        values.put("maTheLoai",matheloai);
         values.put("tensach",tensach);
         values.put("tacGia",tacgia);
         values.put("NXB",nxb);

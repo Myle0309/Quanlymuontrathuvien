@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.appcompat.app.ActionBar;
@@ -15,37 +17,38 @@ import com.example.dell.QuanLyMuonTraThuVien.model.MuonSach;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MuonSachActivity extends AppCompatActivity {
-    private ListView listView;
-    private List<MuonSach> muonSaches;
+public class MuonSachActivity extends AppCompatActivity implements View.OnClickListener {
+
+    Button btnMuonSach;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_muon_sach);
-
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-
-        listView=findViewById(R.id.customlvhoadon);
-        muonSaches = new ArrayList<>();
-
+        initView();
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menumuonsach, menu);
-        return super.onCreateOptionsMenu(menu);
+
+
+    private void initView() {
+        btnMuonSach = findViewById(R.id.btnMuonSach);
+        btnMuonSach.setOnClickListener(this);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.itemaddhoadon:
-                Intent a = new Intent(MuonSachActivity.this, ThemMuonSachActivity.class);
-                startActivity(a);
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnMuonSach:
+                muonSach();
                 break;
-
+            default:
+                break;
         }
-        return super.onOptionsItemSelected(item);
+    }
+
+    private void muonSach() {
+        Intent a = new Intent(MuonSachActivity.this,ThemSachActivity.class);
+        startActivity(a);
     }
 }

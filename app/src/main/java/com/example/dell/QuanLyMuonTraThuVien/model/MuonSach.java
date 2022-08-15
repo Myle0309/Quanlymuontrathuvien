@@ -6,17 +6,14 @@ public class MuonSach {
     private String maMuonSach;
     private Date ngayMuon;
 
+    public MuonSach(){
+        maMuonSach = "";
+        ngayMuon = new Date();
+    }
+
     public MuonSach(String maMuonSach, Date ngayMuon) {
         this.maMuonSach = maMuonSach;
         this.ngayMuon = ngayMuon;
-    }
-
-    public MuonSach(String maMuonSach, String s) {
-
-    }
-
-    public MuonSach() {
-
     }
 
     public String getMaMuonSach() {
@@ -26,7 +23,10 @@ public class MuonSach {
         this.maMuonSach = maMuonSach;
     }
 
-    public CharSequence getNgayMuon() { return (CharSequence) ngayMuon; }
+    public Date getNgayMuon() {
+        return ngayMuon;
+    }
+
     public void setNgayMuon(Date ngayMuon) {
         this.ngayMuon = ngayMuon;
     }
