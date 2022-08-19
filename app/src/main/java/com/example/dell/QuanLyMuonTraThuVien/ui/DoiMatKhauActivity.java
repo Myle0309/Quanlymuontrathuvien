@@ -3,6 +3,7 @@ package com.example.dell.QuanLyMuonTraThuVien.ui;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,9 +13,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.dell.QuanLyMuonTraThuVien.Constant;
 import com.example.dell.QuanLyMuonTraThuVien.R;
 import com.example.dell.QuanLyMuonTraThuVien.dao.NguoiDungDao;
 import com.example.dell.QuanLyMuonTraThuVien.model.NguoiDung;
+import com.google.gson.Gson;
 
 public class DoiMatKhauActivity extends AppCompatActivity {
     EditText edpass, edRepass;
@@ -60,11 +63,9 @@ public class DoiMatKhauActivity extends AppCompatActivity {
 //                }
 
 
-                SharedPreferences pref = getSharedPreferences("USER_FILE", MODE_PRIVATE);
-                String strUserName = pref.getString("USERNAME", "");
+                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(DoiMatKhauActivity.this);
+                NguoiDung user = new Gson().fromJson(pref.getString(Constant.KEY_USER,new Gson().toJson(new NguoiDung())),NguoiDung.class);
                 nguoiDungDao = new NguoiDungDao(DoiMatKhauActivity.this);
-                NguoiDung user = new NguoiDung(strUserName, edpass.getText().toString(), "",
-                        "");
                 try {
                     if (validateForm() > 0) {
                         if (nguoiDungDao.changePasswordNguoiDung(user) > 0) {

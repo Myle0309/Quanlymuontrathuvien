@@ -63,10 +63,7 @@ public class NguoidungActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
