@@ -142,6 +142,7 @@ public class DangKyPhieuMuonActivity extends AppCompatActivity implements View.O
                     pref.edit().putString(Constant.KEY_USER, new Gson().toJson(user)).apply();
                     Toast.makeText(getApplicationContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(this,HomeActivity.class));
+                    finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "Thêm thất bại", Toast.LENGTH_SHORT).show();
                 }

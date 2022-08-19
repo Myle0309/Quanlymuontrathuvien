@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.1375" />
+        <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/drawable/ic_close.xml" value="0.128" />
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/drawable/thoatlogo.xml" value="0.1375" />
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/activity_change_pass_word.xml" value="0.16770833333333332" />
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/activity_chi_tiet_nguoi_dung.xml" value="0.1" />
@@ -11,8 +12,9 @@
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/activity_chi_tiet_the_loai.xml" value="0.16770833333333332" />
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/activity_dang_ky_phieu_muon.xml" value="0.22" />
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/activity_dang_ky_the_thu_vien.xml" value="0.22" />
+        <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/activity_ds_sach_da_muon.xml" value="0.16770833333333332" />
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/activity_home.xml" value="0.16770833333333332" />
-        <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/activity_login.xml" value="0.16770833333333332" />
+        <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/activity_main.xml" value="0.16770833333333332" />
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/activity_muon_sach.xml" value="0.16770833333333332" />
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/activity_nguoidung.xml" value="0.16770833333333332" />
@@ -24,11 +26,14 @@
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/activity_them_sach.xml" value="0.16770833333333332" />
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/activity_them_the_loai.xml" value="0.16770833333333332" />
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/activity_thong_ke.xml" value="0.16770833333333332" />
+        <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/activity_tra_sach.xml" value="0.16770833333333332" />
+        <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/bottom_sheet_register.xml" value="0.14666666666666667" />
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/custommuonsach.xml" value="0.16770833333333332" />
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/customnsachbanchay.xml" value="0.16770833333333332" />
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/customsach.xml" value="0.16770833333333332" />
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/customtheloai.xml" value="0.16770833333333332" />
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/customuser.xml" value="0.16770833333333332" />
+        <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/layout/the_thuvien.xml" value="0.16770833333333332" />
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/menu/menumuonsach.xml" value="0.16770833333333332" />
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/menu/menusach.xml" value="0.16770833333333332" />
         <entry key="..\:/QuanLyMuonTraThuVien/app/src/main/res/menu/menutheloai.xml" value="0.16770833333333332" />

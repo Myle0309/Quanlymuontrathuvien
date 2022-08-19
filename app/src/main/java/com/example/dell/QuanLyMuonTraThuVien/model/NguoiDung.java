@@ -12,6 +12,10 @@ public class NguoiDung  implements Serializable {
     PhieuMuon phieuMuon;
 
     public NguoiDung() {
+        userName = "";
+        password = "";
+        phone ="";
+        hoTen = "";
     }
 
     public NguoiDung(String userName, String password, String phone, String hoTen) {

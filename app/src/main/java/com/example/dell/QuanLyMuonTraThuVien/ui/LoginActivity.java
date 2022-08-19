@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,11 +21,12 @@ import com.example.dell.QuanLyMuonTraThuVien.model.NguoiDung;
 import com.google.gson.Gson;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements BottomSheetRegister.ICallbackRegister {
 
     private EditText edtUsername;
     private EditText edtPassword;
     private CheckBox cbRemember;
+    private TextView tvRegister;
     private Button btnLogin;
     String strUser, strPass;
     NguoiDungDao nguoiDungDao;
@@ -42,18 +44,24 @@ public class LoginActivity extends AppCompatActivity {
         edtUsername = (EditText) findViewById(R.id.edtUsername);
         edtPassword = (EditText) findViewById(R.id.edtPassword);
         cbRemember = (CheckBox) findViewById(R.id.cbRemember);
+        tvRegister = findViewById(R.id.tvRegister);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         nguoiDungDao = new NguoiDungDao(getApplicationContext());
-
-        NguoiDung user2;
-        user2 = nguoiDungDao.getUser("admin");
-        if (user2 == null) {
-            NguoiDung user3 = new NguoiDung("admin", "1234567", "000000001", "Nguyen Thi My Le");
-            nguoiDungDao.insertNguoiDung(user3);
-        }
+        tvRegister.setOnClickListener(v -> {
+            BottomSheetRegister bottomSheetRegister = new BottomSheetRegister();
+            bottomSheetRegister.iCallbackRegister = this;
+            bottomSheetRegister.show(getSupportFragmentManager(), BottomSheetRegister.class.getName());
+        });
         checkLogin();
-        edtUsername.setText("admin");
-        edtPassword.setText("1234567");
+        SharedPreferences prefUserFile = getSharedPreferences("USER_FILE", MODE_PRIVATE);
+        cbRemember.setChecked(prefUserFile.getBoolean("REMEMBER", false));
+        NguoiDung nguoiDung = new Gson().fromJson(pref.getString(Constant.KEY_USER, new Gson().toJson(new NguoiDung())), NguoiDung.class);
+        if (!nguoiDung.getUserName().isEmpty() && !nguoiDung.getPassword().isEmpty() && cbRemember.isChecked()) {
+            edtUsername.setText(nguoiDung.getUserName());
+            edtPassword.setText(nguoiDung.getPassword());
+        }
+        cbRemember.setOnCheckedChangeListener((buttonView, isChecked) ->
+                rememberUser(nguoiDung.getUserName(), nguoiDung.getPassword(), isChecked));
     }
 
     public void checkLogin() {
@@ -62,15 +70,12 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String userName = edtUsername.getText().toString().trim();
                 String password = edtPassword.getText().toString().trim();
-                if (password.length() < 6 || userName.isEmpty() || password.isEmpty()) {
-
+                if (userName.isEmpty() || password.isEmpty()) {
                     if (userName.isEmpty())
                         edtUsername.setError(getString(R.string.notify_empty_user));
 
                     if (password.isEmpty())
                         edtPassword.setError(getString(R.string.notify_empty_pass));
-
-
                 } else {
                     NguoiDung user = nguoiDungDao.getUser(userName);
                     if (user != null && user.getUserName() != null) {
@@ -82,9 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                             finish();
                         } else {
-
                             Toast.makeText(LoginActivity.this, "Tài khoản hoặc mật khẩu chưa chính xác", Toast.LENGTH_SHORT).show();
-
                         }
                     } else {
                         Toast.makeText(LoginActivity.this, "Bạn chưa có tài khoản", Toast.LENGTH_SHORT).show();
@@ -99,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
     public void rememberUser(String u, String p, boolean status) {
         SharedPreferences pref = getSharedPreferences("USER_FILE", MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
+
         if (!status) {
             edit.clear();
         } else {
@@ -110,4 +114,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onSuccess(NguoiDung nguoiDung) {
+        nguoiDungDao.insertNguoiDung(nguoiDung);
+        String userInString = new Gson().toJson(nguoiDung);
+        pref.edit().putString(Constant.KEY_USER, userInString).commit();
+        edtUsername.setText(nguoiDung.getUserName());
+        edtPassword.setText(nguoiDung.getPassword());
+        Toast.makeText(LoginActivity.this, "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onFailure() {
+        Toast.makeText(LoginActivity.this, "Tạo tài khoản thất bại", Toast.LENGTH_SHORT).show();
+    }
 }

@@ -77,10 +77,6 @@ public class NguoidungActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.adduser:
-                Intent a = new Intent(NguoidungActivity.this, ThemNguoiDungActivity.class);
-                startActivity(a);
-                break;
             case R.id.changepass:
                 Intent b = new Intent(NguoidungActivity.this, DoiMatKhauActivity.class);
                 startActivity(b);

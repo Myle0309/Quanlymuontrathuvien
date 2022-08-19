@@ -131,6 +131,7 @@ public class DangKyTheThuVienActivity extends AppCompatActivity implements View.
                     Toast.makeText(getApplicationContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), DangKyPhieuMuonActivity.class);
                     startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "Thêm thất bại", Toast.LENGTH_SHORT).show();
                 }
